@@ -3,7 +3,9 @@ package gui;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import db.DbException;
 import gui.listeners.DataChangeListener;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Departamento;
+import model.excecao.ValidacaoExcecao;
 import model.services.DepartamentoService;
 
 public class FormaDepartamentoController implements Initializable{
@@ -69,6 +72,9 @@ public class FormaDepartamentoController implements Initializable{
 			notificaDataChangeListener();
 			Utils.palcoAtual(evento).close();
 		}
+		catch (ValidacaoExcecao e) {
+			setErrorMessages(e.getErrors());
+		}
 		catch (DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}
@@ -110,6 +116,14 @@ public class FormaDepartamentoController implements Initializable{
 		}
 		txtId.setText(String.valueOf(entidade.getId()));
 		txtName.setText(entidade.getName());
+	}
+	
+	private void setErrorMessages(Map<String, String> errors) {
+		Set<String> fields = errors.keySet();
+
+		if (fields.contains("name")) {
+			labelErrorName.setText(errors.get("name"));
+		}
 	}
 
 }
