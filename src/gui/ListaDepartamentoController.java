@@ -83,6 +83,11 @@ public class ListaDepartamentoController implements Initializable{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
 			
+			FormaDepartamentoController controle = loader.getController(); 
+			controle.setDepartamento(obj);
+			controle.updateFormData();
+			controle.setDepartamentoService(new DepartamentoService());
+			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Digite data Departamento");
 			dialogStage.setScene(new Scene(pane));
