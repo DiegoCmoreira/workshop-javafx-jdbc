@@ -136,28 +136,18 @@ public class VendedorDaoJDBC implements VendedorDao {
 		}
 	}
 
-	private Vendedor instantiateVendedor(ResultSet rs, Departamento dep) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Departamento instantiateDepartamento(ResultSet rs) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Vendedor instantiateSeller(ResultSet rs, Departamento dep) throws SQLException {
+	private Vendedor instantiateVendedor(ResultSet rs, Departamento dep) throws SQLException {
 		Vendedor obj = new Vendedor();
 		obj.setId(rs.getInt("Id"));
 		obj.setName(rs.getString("Name"));
 		obj.setEmail(rs.getString("Email"));
 		obj.setBaseSalary(rs.getDouble("BaseSalary"));
-		obj.setBirthDate(rs.getDate("BirthDate"));
+		obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
 		obj.setDepartment(dep);
 		return obj;
 	}
 
-	private Departamento instantiateDepartment(ResultSet rs) throws SQLException {
+	private Departamento instantiateDepartamento(ResultSet rs) throws SQLException {
 		Departamento dep = new Departamento();
 		dep.setId(rs.getInt("DepartamentoId"));
 		dep.setName(rs.getString("DepName"));
@@ -185,11 +175,11 @@ public class VendedorDaoJDBC implements VendedorDao {
 				Departamento dep = map.get(rs.getInt("DepartamentoId"));
 				
 				if (dep == null) {
-					dep = instantiateDepartment(rs);
+					dep = instantiateDepartamento(rs);
 					map.put(rs.getInt("DepartamentoId"), dep);
 				}
 				
-				Vendedor obj = instantiateSeller(rs, dep);
+				Vendedor obj = instantiateVendedor(rs, dep);
 				list.add(obj);
 			}
 			return list;
