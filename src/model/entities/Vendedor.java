@@ -67,7 +67,7 @@ public class Vendedor implements Serializable {
 		this.baseSalary = baseSalary;
 	}
 
-	public Departamento getDepartment() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
 

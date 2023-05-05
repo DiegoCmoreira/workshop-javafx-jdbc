@@ -39,7 +39,7 @@ public class VendedorDaoJDBC implements VendedorDao {
 			st.setString(2, obj.getEmail());
 			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
 			st.setDouble(4, obj.getBaseSalary());
-			st.setInt(5, obj.getDepartment().getId());
+			st.setInt(5, obj.getDepartamento().getId());
 			
 			int rowsAffected = st.executeUpdate();
 			
@@ -76,7 +76,7 @@ public class VendedorDaoJDBC implements VendedorDao {
 			st.setString(2, obj.getEmail());
 			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
 			st.setDouble(4, obj.getBaseSalary());
-			st.setInt(5, obj.getDepartment().getId());
+			st.setInt(5, obj.getDepartamento().getId());
 			st.setInt(6, obj.getId());
 			
 			st.executeUpdate();

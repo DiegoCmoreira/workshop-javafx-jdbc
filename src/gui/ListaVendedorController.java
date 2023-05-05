@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Vendedor;
+import model.services.DepartamentoService;
 import model.services.VendedorService;
 
 public class ListaVendedorController implements Initializable, DataChangeListener {
@@ -114,9 +115,10 @@ public class ListaVendedorController implements Initializable, DataChangeListene
 
 			FormaVendedorController controle = loader.getController();
 			controle.setVendedor(obj);
+			controle.setServices(new VendedorService(), new DepartamentoService());
+			controle.loadObjetoAssociado();
 			controle.updateFormData();
 			controle.inscreverDataChangeListener(this);
-			controle.setVendedorService(new VendedorService());
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Digite data Vendedor");
