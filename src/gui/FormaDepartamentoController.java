@@ -96,7 +96,7 @@ public class FormaDepartamentoController implements Initializable{
 	}
 
 	@FXML
-	public void onBtCancelarAction(ActionEvent evento) {
+	public void onBtnCancelarAction(ActionEvent evento) {
 		Utils.palcoAtual(evento).close();
 	}
 
