@@ -112,6 +112,7 @@ public class ListaDepartamentoController implements Initializable, DataChangeLis
 			dialogStage.showAndWait();
 
 		} catch (IOException e) {
+			e.getStackTrace();
 			Alerts.showAlert("IO Exception", "Error load view", e.getMessage(), AlertType.ERROR);
 		}
 	}

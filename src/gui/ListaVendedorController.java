@@ -129,6 +129,7 @@ public class ListaVendedorController implements Initializable, DataChangeListene
 			dialogStage.showAndWait();
 
 		} catch (IOException e) {
+			e.getStackTrace();
 			Alerts.showAlert("IO Exception", "Error load view", e.getMessage(), AlertType.ERROR);
 		}
 	}

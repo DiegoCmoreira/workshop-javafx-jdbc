@@ -1,9 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -125,10 +127,38 @@ public class FormaVendedorController implements Initializable {
 
 	private Vendedor getFormData() {
 		Vendedor obj = new Vendedor();
-
+		
+		ValidacaoExcecao excecao = new ValidacaoExcecao("Validation error");
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
+		
+		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
+			excecao.addError("name", "Campo não pode ser vazio");
+		}
 		obj.setName(txtName.getText());
+		
+		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) {
+			excecao.addError("email", "Campo não pode ser vazio");
+		}
+		obj.setEmail(txtEmail.getText());
 
+		if (txtDtNasci.getValue() == null) {
+			excecao.addError("birthDate", "Campo não pode ser vazio");
+		}
+		else {
+			Instant instant = Instant.from(txtDtNasci.getValue().atStartOfDay(ZoneId.systemDefault()));
+			obj.setBirthDate(Date.from(instant));
+		}
+
+		if (txtSalarioBase.getText() == null || txtSalarioBase.getText().trim().equals("")) {
+			excecao.addError("baseSalary", "Campo não pode ser vazio");
+		}
+		obj.setBaseSalary(Utils.tryParseToDouble(txtSalarioBase.getText()));
+
+		obj.setDepartment(comboBoxDepartamento.getValue());
+
+		if (excecao.getErrors().size() > 0) {
+			throw excecao;
+		}
 		return obj;
 	}
 
