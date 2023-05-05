@@ -86,10 +86,10 @@ public class ListaVendedorController implements Initializable, DataChangeListene
 	private void InitializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("name"));
-		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tableColumnDataNascimento.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		Utils.formatoTabelaColumnData(tableColumnDataNascimento, "dd/MM//yyyy");
-		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+		tableColumnSalarioBase.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
 		Utils.formatoTabelaColumnDouble(tableColumnSalarioBase, 2);
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();

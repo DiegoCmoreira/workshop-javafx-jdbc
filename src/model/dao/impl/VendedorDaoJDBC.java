@@ -161,7 +161,7 @@ public class VendedorDaoJDBC implements VendedorDao {
 		try {
 			st = conn.prepareStatement(
 					"SELECT vendedor.*,departamento.Name as DepName "
-					+ "FROM vendedorINNER JOIN departamento "
+					+ "FROM vendedor INNER JOIN departamento "
 					+ "ON vendedor.DepartamentoId = departamento.Id "
 					+ "ORDER BY Name");
 			
